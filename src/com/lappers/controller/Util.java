@@ -12,9 +12,6 @@ import java.util.Date;
 
 public class Util {
 
-
-    // General Util
-
     /**
      * Method to check if the value of our string is empty or not
      *
@@ -41,10 +38,9 @@ public class Util {
      */
     static public Double checkPositiveDouble(Double doubleArg) {
 
-        Double invalidDouble = 0.0;
-        Double minValidDouble = 0.1;
+        Double minDouble = 0.0;
 
-        return doubleArg < invalidDouble ? invalidDouble : doubleArg;
+        return doubleArg < minDouble ? minDouble : doubleArg;
 
     }
 

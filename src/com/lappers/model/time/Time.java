@@ -2,6 +2,7 @@ package com.lappers.model.time;
 
 
 import com.lappers.controller.Util;
+import com.lappers.view.Menu;
 import com.lappers.view.UtilString;
 import com.lappers.model.car.Car;
 import com.lappers.model.circuit.Circuit_Enum;
@@ -159,133 +160,6 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
         return (booleanArg == null ? false : booleanArg);
     }
 
-    /**
-     * Shows a interactive menu for add a new Time
-     *
-     * @param circuit Circuit (see Enum @Circuit_Enum)
-     * @return Instance of Time class
-     */
-    public static Time addTimeMenu(Circuit_Enum circuit) {
-
-
-        Time time = new Time();
-        boolean check = true;
-        while (check) {
-
-
-            Scanner wheaterInput = new Scanner(System.in);
-
-            boolean lapTimeControl = true;
-            boolean simulatedControl = true;
-            boolean exitControl = true;
-            boolean addControl = true;
-
-            boolean simulated = true;
-            int inputAux = 0;
-            String wheater;
-            double lapTime = 0;
-
-            Car car = Car.addCarMenu();          // Call to submenu
-            Racer racer = Racer.addRacerMenu(); // Call to submenu
-
-
-            while (lapTimeControl) {
-                Scanner input = new Scanner(System.in);
-                try {
-                    System.out.println("Lap time");
-                    lapTime = input.nextDouble();
-                } catch (InputMismatchException e) {
-                    System.out.println(UtilString.ONLYACEPTEDVALUES.getString());
-                } finally {
-                    if (lapTime > 0) {
-                        lapTimeControl = false;
-                    }
-                }
-            }
-
-            System.out.println("Input wheater");
-            wheater = wheaterInput.nextLine();
-
-            simulatedControl = true;
-            while (simulatedControl) {
-                Scanner input = new Scanner(System.in);
-                try {
-                    System.out.println("Simulated  Time ?");
-                    System.out.println("1 = yes");
-                    System.out.println("2 = no");
-                    inputAux = input.nextInt();
-
-                    if (inputAux == 1) {
-                        simulated = true;
-                    }
-                    if (inputAux == 2) {
-                        simulated = false;
-                    }
-
-                } catch (InputMismatchException e) {
-                    System.out.println(UtilString.ONLYONEORTWOVALUES.getString());
-                } finally {
-                    if (inputAux == 1 || inputAux == 2) {
-                        simulatedControl = false;
-
-                    }
-                }
-            }
-
-            time = new Time(circuit, car, racer, lapTime, wheater, simulated);
-
-            addControl = true;
-            while (addControl) {
-                Scanner input = new Scanner(System.in);
-                try {
-                    System.out.println(time + "\nAdd ?\n " + "1 = yes || 2 = no\n");
-                    inputAux = input.nextInt();
-
-                } catch (InputMismatchException e) {
-                    inputAux = 3;
-                } finally {
-                    try {
-                        if ((inputAux == 3)) {
-                            System.out.println(UtilString.ONLYONEORTWOVALUES.getString());
-
-                        } else if (inputAux == 1) {
-                            check = false;
-
-                            return time;
-                        } else if (inputAux == 2) {
-                            int inputTwo;
-                            addControl = false;
-                            check = false;
-                            inputAux = 0;
-
-                            exitControl = true;
-                            while (exitControl) {
-                                Scanner exitInput = new Scanner(System.in);
-                                try {
-                                    System.out.println("" + "\n Exit ?\n " + "1 = yes || 2 = no\n");
-                                    inputTwo = exitInput.nextInt();
-                                    if (inputTwo == 1) {
-
-                                        return new Time();
-
-
-                                    } else if (inputTwo == 2) {
-                                        addControl = true;
-                                        exitControl = false;
-                                    }
-                                } catch (InputMismatchException e) {
-                                    exitControl = true;
-                                }
-                            }
-                        }
-                    } catch (InputMismatchException e) {
-                        check = true;
-                    }
-                }
-            }
-        }
-        return time;
-    }
 
     /**
      * Method to check if the value of our wheater is empty or not

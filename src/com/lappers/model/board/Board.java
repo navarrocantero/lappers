@@ -84,13 +84,6 @@ public class Board implements Serializable {
         Board.calculateGapToFirst(times);
     }
 
-    public static void findDuplicatedTime(ArrayList<Time> times) {
-        Iterator<Time> itTimes = times.iterator();
-
-
-    }
-
-
     /**
      * This method receives a board and saves in the specified path file
      *

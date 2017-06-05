@@ -93,28 +93,5 @@ public class Racer implements Serializable {
         return (racer != null) ? racer : racerOne;
     }
 
-    /**
-     * This method shows a interactive Menu which can add a new Racer
-     *
-     * @return Racer a new racer
-     */
-    public static Racer addRacerMenu() {
-        Scanner input = new Scanner(System.in);
-        Racer newRacer = new Racer();
 
-        try {
-            do {
-                System.out.println("Input the racer name");
-                newRacer.setRacerName(input.nextLine());
-            } while (newRacer.getRacerName() == null);
-
-            do {
-                System.out.println("Input the racer country");
-                newRacer.setRacerCountry(input.nextLine());
-            } while (newRacer.getRacerCountry() == null);
-
-        } catch (InputMismatchException e) {
-        }
-        return newRacer;
-    }
 }

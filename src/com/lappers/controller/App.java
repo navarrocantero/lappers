@@ -14,36 +14,68 @@ public class App {
 
 
     public static void main(String[] args) {
-        ReadAFile rf = new ReadAFile();
+
+        //  The first block is instantiation of:
+        //  String of different file paths
+        //  ReadAfile object helper for first boot
         String firstRunFilePath = "src/res/fr.dat";
         String nurburFilePath = "src/res/nurbur.dat";
         String topGearFilePath = "src/res/topgear.dat";
         String grandTourFilePath = "src/res/grandtour.dat";
         String monteblancoFilePath = "src/res/monteblanco.dat";
+        ReadAFile rf = new ReadAFile();
 
+        //  In this  block will check if is the first run of app or not:
+        //  That does it based on whether you can read a control file means
+        //  it is not the first time of the app`s run
         if (!(rf.canRead(firstRunFilePath))) {
+
+            // If can enter here (means first run)
+            // That will make 4 new Board objects loading data from
+            // data loading methods and then saving them to files.
+            // See the @Board class for see the boardTofile Method
             Board monteblancoBoard = new Board(loadMonteblancoTimes());
             Board nurbBoard = new Board(loadNurburTimes());
             Board topGearBoard = new Board(loadTopGearTimes());
             Board grandTourBoard = new Board(loadGrandTourTimes());
-            Board.boardToFile(null,firstRunFilePath);
             Board.boardToFile(nurbBoard, nurburFilePath);
             Board.boardToFile(monteblancoBoard, monteblancoFilePath);
             Board.boardToFile(grandTourBoard, grandTourFilePath);
             Board.boardToFile(topGearBoard, topGearFilePath);
+
+            //  Finally, the verification file is saved
+            Board.boardToFile(null, firstRunFilePath);
+
+
         }
 
 
+        // In all the other starts of the program are instancian 4 objects Board
+        // See the @Board class for see the fileToBoard method
         Board nurbBoard = Board.fileToBoard(nurburFilePath);
         Board topGearBoard = Board.fileToBoard(topGearFilePath);
         Board grandTourBoard = Board.fileToBoard(grandTourFilePath);
         Board monteblancoBoard = Board.fileToBoard(monteblancoFilePath);
 
-
-        int secondOption;
+        //  This integer  will make as selector in our main menu
         int option;
+
+        // This integer  will make as selector in our second  menu
+        int secondOption;
+
+        // This  arrayList  Will be an arraylist that will
+        // contain the main attribute of the previously declared
+        // board objects (See the @Board class for more details)
+        // and we Use as Joker for all the times.
         ArrayList<Time> auxTimes = new ArrayList<Time>();
 
+        // Main menu
+        // 1- Monteblanco menu
+        // 2- Top gear   menu
+        // 3- Grand tour menu
+        // 4- Nurbur menu
+        // In each option the board will do sorted
+        // and calculate the gap.
         while ((option = Menu.firstMenu()) != 0) {
 
             if (option == 1) {
@@ -63,6 +95,13 @@ public class App {
                 auxTimes = nurbBoard.getTimes();
             }
 
+            // Main menu
+            // 1- See times     menu
+            // 2- Add time      menu
+            // 3- Delete time   menu
+            // 4- Se track spcs menu
+            // In each option the board selected will be
+            // the option selected in Main menu
             while ((secondOption = Menu.secondMenu(auxTimes)) != 0) {
 
                 if (secondOption == 1) {
@@ -80,6 +119,10 @@ public class App {
                 secondOption = 0;
             }
         }
+
+        // Finally when the Main and Second menu, will be
+        // 0 the app stops, and all the boards will be saved
+        // to their respective files
         Board.boardToFile(nurbBoard, nurburFilePath);
         Board.boardToFile(monteblancoBoard, monteblancoFilePath);
         Board.boardToFile(grandTourBoard, grandTourFilePath);
@@ -87,21 +130,27 @@ public class App {
     }
 
 
+    // The following methods are only used for the first start of the program.
+    // It is responsible for doing some test times and adding it to your corresponding arraylist.
+    // For this reason are @Deprecated Methods
 
-    // Only for the first run and make files
+    // ONLY WILL WORK ON THE FIRST START
+
 
     @Deprecated
     public static ArrayList<Time> loadMonteblancoTimes() {
 
+        // Instances of some test times
 
         Time timeOne = new Time(Circuit_Enum.MONTEBLANCO, new Car("Audi TT RS Coupe"), new Racer(), 0.5137, "wet", false);
         Time timeTwo = new Time(Circuit_Enum.MONTEBLANCO, new Car("Renault Megane RS (Mk III)"), new Racer(), 0.54080, "wet", false);
         Time timeThree = new Time(Circuit_Enum.MONTEBLANCO, new Car("BMW M3 (E92)"), new Racer(), 0.5620, "wet", false);
         Time timeThreee = new Time(Circuit_Enum.MONTEBLANCO, new Car("Alfa Romeo Brera 3.2 JTS V6 Q4"), new Racer(), 0.5680, "wet", false);
 
-
+        // Instance of arrayList
         ArrayList<Time> times = new ArrayList<>();
 
+        // And add all times to the upper arrayList
 
         times.add(timeOne);
         times.add(timeTwo);
@@ -114,7 +163,7 @@ public class App {
     @Deprecated
     public static ArrayList<Time> loadTopGearTimes() {
 
-
+        // Instances of some test times
         Time timeOne = new Time(Circuit_Enum.TOP_GEAR, new Car("McLaren 675LT"), new Racer(), 1.137);
         Time timeTwo = new Time(Circuit_Enum.TOP_GEAR, new Car("Pagani Huayra"), new Racer(), 1.138);
         Time timeThree = new Time(Circuit_Enum.TOP_GEAR, new Car("BAC Mono"), new Racer(), 1.143);
@@ -129,9 +178,12 @@ public class App {
         Time timeThreeo = new Time(Circuit_Enum.TOP_GEAR, new Car("Nissan GT-R"), new Racer(), 1.197);
         Time timeFouro = new Time(Circuit_Enum.TOP_GEAR, new Car("Ferrari 430 Scuderia"), new Racer(), 1.197);
 
+        // Instance of arrayList
 
         ArrayList<Time> times = new ArrayList<>();
 
+
+        // And add all times to the upper arrayList
 
         times.add(timeOne);
         times.add(timeTwo);
@@ -152,6 +204,7 @@ public class App {
     @Deprecated
     public static ArrayList<Time> loadGrandTourTimes() {
 
+        // Instances of some test times
 
         Time timeOne = new Time(Circuit_Enum.GRAND_TOUR, new Car("Mclaren 675LT"), new Racer(), 1.137, "", false);
         Time timeTwo = new Time(Circuit_Enum.GRAND_TOUR, new Car("Pagani Huayra"), new Racer(), 1.138, "", false);
@@ -164,8 +217,12 @@ public class App {
         Time timeThreeeft = new Time(Circuit_Enum.GRAND_TOUR, new Car("Honda NSX"), new Racer(), 1.26, "wet", false);
         Time timeThdsfreeeft = new Time(Circuit_Enum.GRAND_TOUR, new Car("Fiat Abarth 124 Spider"), new Racer(), 1.337, "wet", false);
 
+        // Instance of arrayList
+
         ArrayList<Time> times = new ArrayList<>();
 
+
+        // And add all times to the upper arrayList
 
         times.add(timeOne);
         times.add(timeTwo);
@@ -184,6 +241,7 @@ public class App {
     @Deprecated
     public static ArrayList<Time> loadNurburTimes() {
 
+        // Instances of some test times
 
         Time timeOne = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("NextEV Nio EP9"), new Racer(), 6.4590, "", false);
         Time timeTwo = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Radical SR8LM "), new Racer(), 6.48, "", false);
@@ -196,9 +254,10 @@ public class App {
         Time timeThreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Dodge Viper SRT-10 ACR"), new Racer(), 7.1213, "wet", false);
         Time timeThdsfreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Porsche 911 GT3"), new Racer(), 7.1270, "wet", false);
 
+        // Instance of arrayList
         ArrayList<Time> times = new ArrayList<>();
 
-
+        // And add all times to the upper arrayList
         times.add(timeOne);
         times.add(timeTwo);
         times.add(timeThree);

@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
 
+/**
+ * Method that allows us to read a file.
+ * If you can read it, it will return True
+ */
 class ReadAFile {
 
     public Boolean canRead(String filePath) {

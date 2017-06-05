@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Car implements Serializable{
+public class Car implements Serializable {
 
     private static final long serialVersionUID = -6231095497873426276L;
     private String carModel;
@@ -17,16 +17,30 @@ public class Car implements Serializable{
 
     // Constructors
 
+    /**
+     * Default Constructor
+     */
     public Car() {
 
-        this(" "," "," ");
+        this(" ", " ", " ");
     }
 
+    /**
+     * Constructor with only one param
+     * the blanks parameters will be "Stock"
+     *
+     * @param carModel String of car model
+     */
     public Car(String carModel) {
 
         this(carModel, " ", " ");
     }
 
+    /**
+     * @param carModel String of the car model
+     * @param carType  String of the car type
+     * @param carTyres String of the car tyres comp
+     */
     public Car(String carModel, String carType, String carTyres) {
 
         this.setCarModel(carModel);
@@ -42,7 +56,9 @@ public class Car implements Serializable{
         return carModel;
     }
 
-    protected void setCarModel(String carModel) {
+    // See the @Util class for more details about
+    // next method
+    public void setCarModel(String carModel) {
 
         this.carModel = Util.checkEmptyString(carModel);
     }
@@ -52,7 +68,9 @@ public class Car implements Serializable{
         return carTyres;
     }
 
-    protected void setCarTyres(String carTyres) {
+    // See the @Car class for more details
+    // about the next method
+    public void setCarTyres(String carTyres) {
 
         this.carTyres = Car.checkCarString(carTyres);
     }
@@ -62,7 +80,9 @@ public class Car implements Serializable{
         return carType;
     }
 
-    protected void setCarType(String carType) {
+    // See the @Car class for more details
+    // about the next method
+    public void setCarType(String carType) {
 
         this.carType = Car.checkCarString(carType);
     }
@@ -86,22 +106,21 @@ public class Car implements Serializable{
             return false;
         }
         if (obj.getClass() != this.getClass()) { // Are the same class ?
-        return false;
+            return false;
         }
 
         Car car = (Car) obj;  // Instance of new car object
 
         return this.getCarModel().equalsIgnoreCase(car.getCarModel())      // It is the same car model?
                 && this.getCarTyres().equalsIgnoreCase(car.getCarTyres())   // It is the same car tyres?
-                && this.getCarType().equalsIgnoreCase(car.getCarType())  ;  // It is the same car type ?
+                && this.getCarType().equalsIgnoreCase(car.getCarType());  // It is the same car type ?
 
     }
 
     /**
-     *
      * @param car Value of our car
      * @return If the value is not valid , set the default car ("Street","Street")
-     *          else the value of our car
+     * else the value of our car
      */
     static public Car checkCar(Car car) {
 
@@ -123,37 +142,6 @@ public class Car implements Serializable{
         return (string.trim().equalsIgnoreCase(emptyString) ? unknown : string);
     }
 
-    /**
-     * This method shows a interactive Menu which can add a new Car
-     *
-     * @return Car a new car
-     */
-    public static Car addCarMenu(){
-        Scanner input = new Scanner(System.in);
-        Car car = new Car();
-        String carModel;
-        String carTyres;
-        String carType;
 
-        try{
-        do {
-            System.out.println("Input the car model");
-            car.setCarModel(input.nextLine());
-        } while (car.getCarModel() == null);
-
-        do {
-            System.out.println("Input the car tyres");
-            car.setCarTyres(input.nextLine());
-        } while (car.getCarTyres() == null);
-
-        do {
-            System.out.println("Input the car type");
-            car.setCarType(input.nextLine());
-        } while (car.getCarType() == null);
-
-
-
-    }catch (InputMismatchException e){}
-return car;
-}}
+}
 
