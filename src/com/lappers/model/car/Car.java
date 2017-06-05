@@ -48,7 +48,6 @@ public class Car implements Serializable {
         this.setCarType(carType);
     }
 
-
     // Accesors
 
     public String getCarModel() {
@@ -56,11 +55,9 @@ public class Car implements Serializable {
         return carModel;
     }
 
-    // See the @Util class for more details about
-    // next method
-    public void setCarModel(String carModel) {
+    public String getCarType() {
 
-        this.carModel = Util.checkEmptyString(carModel);
+        return carType;
     }
 
     public String getCarTyres() {
@@ -68,20 +65,34 @@ public class Car implements Serializable {
         return carTyres;
     }
 
-    // See the @Car class for more details
-    // about the next method
+    /**
+     * See the @Util class for more details about
+     * next method
+     *
+     * @param carModel String of car Model
+     */
+    public void setCarModel(String carModel) {
+
+        this.carModel = Util.checkEmptyString(carModel);
+    }
+
+    /**
+     * See the @Car class for more details
+     * about the next method
+     *
+     * @param carTyres String of car Tyres comp
+     */
     public void setCarTyres(String carTyres) {
 
         this.carTyres = Car.checkCarString(carTyres);
     }
 
-    public String getCarType() {
-
-        return carType;
-    }
-
-    // See the @Car class for more details
-    // about the next method
+    /**
+     * See the @Car class for more details
+     * about the next method
+     *
+     * @param carType String of car Type
+     */
     public void setCarType(String carType) {
 
         this.carType = Car.checkCarString(carType);
@@ -141,7 +152,5 @@ public class Car implements Serializable {
 
         return (string.trim().equalsIgnoreCase(emptyString) ? unknown : string);
     }
-
-
 }
 

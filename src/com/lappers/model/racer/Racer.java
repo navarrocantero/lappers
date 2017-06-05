@@ -9,23 +9,35 @@ import java.util.Scanner;
 
 public class Racer implements Serializable {
 
-
     private static final long serialVersionUID = -2281577272162642360L;
     private String racerName;
     private String racerCountry;
 
     // Constructors
 
+    /**
+     * Default Constructor
+     */
     public Racer() {
-        this("","");
+        this("", "");
 
     }
 
+    /**
+     * Constructor with only one param
+     * the blanks parameters will be "unknown"
+     *
+     * @param racerName String of racer Name
+     */
     public Racer(String racerName) {
 
         this.setRacerName(racerName);
     }
 
+    /**
+     * @param racerName    String of the racer Name
+     * @param racerCountry String of the racer Country
+     */
     public Racer(String racerName, String racerCountry) {
 
         this.setRacerName(racerName);
@@ -40,22 +52,32 @@ public class Racer implements Serializable {
         return racerName;
     }
 
-    public void setRacerName(String racerName) {
-
-
-        this.racerName = Util.checkEmptyString(racerName);
-    }
-
     public String getRacerCountry() {
 
         return racerCountry;
     }
 
+    /**
+     * See the @Util class for more details about
+     * next method
+     *
+     * @param racerName String of racer name
+     */
+    public void setRacerName(String racerName) {
+
+        this.racerName = Util.checkEmptyString(racerName);
+    }
+
+    /**
+     * See the @Util class for more details about
+     * next method
+     *
+     * @param racerCountry String of racer Country
+     */
     public void setRacerCountry(String racerCountry) {
 
         this.racerCountry = Util.checkEmptyString(racerCountry);
     }
-
 
     // Helpers
 
@@ -92,6 +114,4 @@ public class Racer implements Serializable {
         Racer racerOne = new Racer();
         return (racer != null) ? racer : racerOne;
     }
-
-
 }
