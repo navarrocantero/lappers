@@ -25,6 +25,9 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
 
     //Constructors
 
+    /**
+     *  Default constructor with no parameters
+     */
     public Time() {
 
 
@@ -34,19 +37,34 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
      * This constructor only can be called in this class  because only if used to use in the addTimeMenu method
      * for a temporaly and not usable instance
      *
-     * @param circuit Circuit_Enum
-     * @param car
-     * @param racer
+     * @param circuit Circuit_Enum Object
+     * @param car Car object
+     * @param racer Racer Object
      */
     public Time(Circuit_Enum circuit, Car car, Racer racer) {
         this(circuit, car, racer, 0);
     }
 
+    /**
+     *
+     * @param circuit Circuit from Circuit_Enum object
+     * @param car car object
+     * @param racer racer object
+     * @param lapTime double with the valor of Lap Time
+     */
     public Time(Circuit_Enum circuit, Car car, Racer racer, double lapTime) {
         this(circuit, car, racer, lapTime, "", false);
     }
 
-
+    /**
+     *
+     * @param circuit Circuit from Circuit_Enum object
+     * @param car Car object
+     * @param racer Racer object
+     * @param lapTime double with the valor of Lap Time
+     * @param wheater String with the valor of our Wheater
+     * @param simulated Boolean (isSimulated?)
+     */
     public Time(Circuit_Enum circuit, Car car, Racer racer, Double lapTime,
                 String wheater, Boolean simulated) {
 
@@ -58,6 +76,16 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
         this.setSimulated(simulated);
     }
 
+    /**
+     *
+     * @param circuit Circuit from Circuit_Enum object
+     * @param car Car object
+     * @param racer Racer object
+     * @param lapTime double with the valor of Lap Time
+     * @param wheater String with the valor of our Wheater
+     * @param simulated Boolean (isSimulated?)
+     * @param gapToFirst Double with the valor of gap to the First Pos
+     */
     public Time(Circuit_Enum circuit, Car car, Racer racer, double lapTime, String wheater, Boolean simulated, double gapToFirst) {
         this.setCircuit(circuit);
         this.setCar(car);
@@ -69,8 +97,6 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
     }
 
     //Accesors
-
-    //Getters
 
     public Car getCar() {
         return car;
@@ -101,24 +127,38 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
         return gapToFirst;
     }
 
-    //Setters
-
     public void setCircuit(Circuit_Enum circuit) {
         this.circuit = circuit;
     }
 
+    /**
+     * See the @Car class for more details about the next method
+     * @param car  car
+     */
     public void setCar(Car car) {
         this.car = Car.checkCar(car);
     }
 
+    /**
+     * See the @Racer class for more details about the next method
+     * @param racer racer
+     */
     public void setRacer(Racer racer) {
         this.racer = Racer.checkRacer(racer);
     }
 
+    /**
+     * See the @Util class for more details about the next method
+     * @param lapTime Double with the time of Lap
+     */
     public void setLapTime(Double lapTime) {
         this.lapTime = Util.checkPositiveDouble(lapTime);
     }
 
+    /**
+     * See the @Time class for more details about the next method
+     * @param wheater String with our wheater
+     */
     public void setWheater(String wheater) {
         this.wheater = Time.checkWheater(wheater);
     }
@@ -127,6 +167,10 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
         this.simulated = simulated;
     }
 
+    /**
+     * See the @Util class for more detailes about the next method
+     * @param gapToFirst double with the valor of gap to the first Pos
+     */
     public void setGapToFirst(double gapToFirst) {
         this.gapToFirst = Util.checkPositiveDouble(gapToFirst);
     }
@@ -147,10 +191,8 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
                         "Simulation      = " + this.isSimulated() + "\n";
     }
 
-
     /**
      * Method to check if the value of our time tipe is null or not
-     *
      * @param booleanArg Can be true or false
      * @return If the value is empty, set the 'false' attribute
      */
@@ -159,7 +201,6 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
 
         return (booleanArg == null ? false : booleanArg);
     }
-
 
     /**
      * Method to check if the value of our wheater is empty or not
@@ -174,7 +215,6 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
 
         return (string.trim().equalsIgnoreCase(emptyString) ? unknown : string);
     }
-
 
     /**
      * Comparator by Lap Time
@@ -212,13 +252,13 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
     @Override
     public int compare(Time o1, Time o2) {
 
-        return o1.compareTo(o2);
+        return o1.compareTo(o2); // This call to the  lower method
     }
 
     @Override
     public int compareTo(Time time) {
 
-        int res = Double.compare(this.getLapTime(), time.getLapTime());
+        int res = Double.compare(this.getLapTime(), time.getLapTime()); // Comparator by lap Time (OBVSLY)
 
 
         return res;

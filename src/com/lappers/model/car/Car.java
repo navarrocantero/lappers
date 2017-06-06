@@ -14,11 +14,10 @@ public class Car implements Serializable {
     private String carTyres;
     private String carType;
 
-
     // Constructors
 
     /**
-     * Default Constructor
+     * Default Constructor with no parameters
      */
     public Car() {
 
@@ -28,7 +27,6 @@ public class Car implements Serializable {
     /**
      * Constructor with only one param
      * the blanks parameters will be "Stock"
-     *
      * @param carModel String of car model
      */
     public Car(String carModel) {

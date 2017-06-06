@@ -65,7 +65,7 @@ public class Board implements Serializable {
      * This method  sett the gapTofirst valor to the all times on the arrayList
      * except the first (best time = 0)
      *
-     * @param times
+     * @param times ArrayList of Time
      */
     public static void calculateGapToFirst(ArrayList<Time> times) {
 
@@ -78,6 +78,11 @@ public class Board implements Serializable {
 
     }
 
+    /**
+     * This method first sort the Arraylist by Lap time
+     * and later calculate the gap to the first
+     * @param times ArrayList of Time
+     */
     public static void sortAndCalculateGap(ArrayList<Time> times) {
 
         Collections.sort(times);

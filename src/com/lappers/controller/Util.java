@@ -30,9 +30,7 @@ public class Util {
 
     /**
      * Method to check if the value of our double is valid
-     * Valid Double >  0
-     * Inval Double <= 0
-     *
+     * Valid Double greather than  0
      * @param doubleArg Value of double arg
      * @return Double with the value of our doubleArg if is valid  or the value of a minimum double valid (0)
      */

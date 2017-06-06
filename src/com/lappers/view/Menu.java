@@ -14,7 +14,6 @@ import java.util.*;
 public class Menu {
 
 
-
     /**
      * The first Menu of the app
      * Shows the varied of Circuit`s board Name
@@ -23,9 +22,12 @@ public class Menu {
      */
     public static int firstMenu() {
 
-
+        // Control boolean
         Boolean bol = true;
+        //  This integer  will make as selector in our main menu
         int option = 0;
+
+
         while (bol) {
             try {
                 Scanner input = new Scanner(System.in);
@@ -45,7 +47,7 @@ public class Menu {
                     bol = false;
                 }
             } catch (InputMismatchException e) {
-                System.out.println(UtilString.ONLYACEPTEDVALUES.getString());
+                System.out.println(UtilString.ONLYACEPTEDVALUES.getString());//See  @UtilString Enum for more details
             }
         }
         return option;
@@ -62,7 +64,10 @@ public class Menu {
 
 
         ArrayList<Time> timeArrayList;
+
+        // Control boolean
         Boolean bol = true;
+        //  This integer  will make as selector in our main menu
         int option = 0;
 
         while (bol) {
@@ -70,7 +75,7 @@ public class Menu {
                 Scanner input = new Scanner(System.in);
                 System.out.println("********BOARD*********");
                 System.out.println("**********************\n");
-                System.out.println("    " + times.get(0).getCircuit().getCIRCUIT_NAME() + "\n");
+                System.out.println("    " + times.get(0).getCircuit().getCIRCUIT_NAME() + "\n"); // Show the board name
                 System.out.println("1 - See  Times        ");
                 System.out.println("2 - Add   Time        ");
                 System.out.println("3 - Delete Time       ");
@@ -84,7 +89,7 @@ public class Menu {
                     bol = false;
                 }
             } catch (InputMismatchException e) {
-                System.out.println(UtilString.ONLYACEPTEDVALUES.getString());
+                System.out.println(UtilString.ONLYACEPTEDVALUES.getString()); //See  @UtilString Enum for more details
             }
         }
         return option;
@@ -92,20 +97,25 @@ public class Menu {
 
     /**
      * This menu shows differents ways to see the board's times
-     *
      * @param times our ArrayList of Time class
      * @return int , if int == 0 go to back menu
      */
     public static int seeTimesMenu(ArrayList<Time> times) {
 
+        // Control boolean
         Boolean bol = true;
+        //  This integer  will make as selector in our main menu
         int option = 0;
 
+
+        // The next method will always be working until
+        // in the next menu the user selects exit
+        // and the control boolean marks the break.
         while (bol) {
-            Board.sortAndCalculateGap(times);
+            Board.sortAndCalculateGap(times); // See the @Board for more details about this method
 
             try {
-                Scanner input = new Scanner(System.in);
+                Scanner input = new Scanner(System.in);                     // This block prints a interactive Menu
                 System.out.println("**********************");
                 System.out.println("**********************");
                 System.out.println("1 - Detailed  Times    ");
@@ -115,17 +125,16 @@ public class Menu {
                 System.out.println("**********************");
                 option = input.nextInt();
 
-                if (option == 0 || option == 1 || option == 2) {
-                    bol = false;
+                if (option == 0 || option == 1 || option == 2) { // If '0' was selected the user will go back
+                    bol = false;                                //  and will return 0 and go back
                     if (option == 0) {
                         return option;
 
-                    } else if (option == 1) {
-
+                    } else if (option == 1) {                   // If '1' was selected will do it this 'SOUT'
                         for (Time time : times) {
                             System.out.println(time.toString());
                         }
-                    } else if (option == 2) {
+                    } else if (option == 2) {                   // Same thing (that UP) but with '2' selected
                         System.out.println(times.get(0).getCircuit().getCIRCUIT_NAME() + "\n");
                         for (Time time : times) {
                             System.out.println("Pos " + (times.indexOf(time) + 1) + " " + time.getCar().getCarModel() + " "
@@ -134,7 +143,7 @@ public class Menu {
                     }
                 }
             } catch (InputMismatchException e) {
-                System.out.println(UtilString.ONLYACEPTEDVALUES.getString());
+                System.out.println(UtilString.ONLYACEPTEDVALUES.getString()); // See  @UtilString Enum for more  details
             }
         }
         return option;
@@ -142,7 +151,6 @@ public class Menu {
 
     /**
      * This menu show the submenus for add a time :
-     *
      * @param times our ArrayList of Time class
      */
     public static void addTimeMenu(ArrayList<Time> times) {
@@ -159,8 +167,13 @@ public class Menu {
 
         while (bol) {
             bol = false;
-            time = Menu.addTimeMenu(circuit); // Call to submenu
+            time = Menu.addTimeMenu(circuit); // See the @Menu class for more details about this method
 
+            // - It checks to insert a new time, if there is already a
+            //   previous time of that car in that arrayList
+            //   - If so, check the previous times in the arraylist.
+            //       - If it finds a worse time, the arraylist will be updated.
+            //       - If it finds a better time, the arraylist will not change
             try {
                 for (Time t : times) {
                     if (t.getCar().getCarModel().trim()
@@ -168,8 +181,8 @@ public class Menu {
 
                         if (t.getLapTime() <= time.getLapTime()) {
                             time = new Time();
-                            System.out.println(UtilString.BESTTIMEFOUND.getString());
-                            System.out.println(UtilString.DONOTHING.getString());
+                            System.out.println(UtilString.BESTTIMEFOUND.getString()); // See UtilString for more details
+                            System.out.println(UtilString.DONOTHING.getString());    // about all these Strings
                         } else {
                             timeAux = t;
                             System.out.println(UtilString.WORSTTIMEFOUND.getString());
@@ -192,7 +205,6 @@ public class Menu {
 
     /**
      * This menu shows the Circuit Specs
-     *
      * @param times our ArrayList of Time class
      */
     public static void seeCircuitMenu(ArrayList<Time> times) {
@@ -201,9 +213,9 @@ public class Menu {
     }
 
     /**
-     * This menu show a menu for delete a time
      *
      * @param times our ArrayList of Time class
+     * @return int
      */
     public static int quitTimeMenu(ArrayList<Time> times) {
         int option = 0;
@@ -265,15 +277,11 @@ public class Menu {
 
     /**
      * This method shows a interactive Menu which can add a new Car
-     *
      * @return Car a new car
      */
     public static Car addCarMenu() {
         Scanner input = new Scanner(System.in);
         Car car = new Car();
-        String carModel;
-        String carTyres;
-        String carType;
 
         try {
             do {
@@ -299,7 +307,6 @@ public class Menu {
 
     /**
      * This method shows a interactive Menu which can add a new Racer
-     *
      * @return Racer a new racer
      */
     public static Racer addRacerMenu() {
@@ -324,41 +331,50 @@ public class Menu {
 
     /**
      * Shows a interactive menu for add a new Time
-     *
-     * @param circuit Circuit (see Enum @Circuit_Enum)
+     * @param circuit Circuit see Enum @Circuit_Enum for more details about
      * @return Instance of Time class
      */
     public static Time addTimeMenu(Circuit_Enum circuit) {
 
-
+        // New null Time
         Time time = new Time();
+
+         // The main control boolean of the next 'Big Method'
         boolean check = true;
+
+
         while (check) {
 
-
+            // Each time the method is started all the following
+            // elements are declared to prevent errors
             Scanner wheaterInput = new Scanner(System.in);
-
             boolean lapTimeControl = true;
             boolean simulatedControl = true;
             boolean exitControl = true;
             boolean addControl = true;
-
             boolean simulated = true;
             int inputAux = 0;
             String wheater;
             double lapTime = 0;
 
-            Car car = Menu.addCarMenu();          // Call to submenu
-            Racer racer = Menu.addRacerMenu(); // Call to submenu
+            // The following two instances are done
+            // through their own methods.
+            // See the methods for more details about
+            Car car = Menu.addCarMenu();
+            Racer racer = Menu.addRacerMenu();
 
 
+            // In this block the lap time is added
+            // This block only breaks when the lapTime
+            // added will be grather Than 0
             while (lapTimeControl) {
                 Scanner input = new Scanner(System.in);
                 try {
                     System.out.println("Lap time");
                     lapTime = input.nextDouble();
+                    //Check that the time is greater than 0 and that it is double
                 } catch (InputMismatchException e) {
-                    System.out.println(UtilString.ONLYACEPTEDVALUES.getString());
+                    System.out.println(UtilString.ONLYACEPTEDVALUES.getString()); // See the @UtilString for more details
                 } finally {
                     if (lapTime > 0) {
                         lapTimeControl = false;
@@ -369,6 +385,13 @@ public class Menu {
             System.out.println("Input wheater");
             wheater = wheaterInput.nextLine();
 
+
+
+            // In this block shows a Interactive Menu
+            // that asks the user if the time
+            // is simulated
+            // Only breaks when inputaux will be '1' or
+            // '2'
             simulatedControl = true;
             while (simulatedControl) {
                 Scanner input = new Scanner(System.in);
@@ -386,7 +409,7 @@ public class Menu {
                     }
 
                 } catch (InputMismatchException e) {
-                    System.out.println(UtilString.ONLYONEORTWOVALUES.getString());
+                    System.out.println(UtilString.ONLYONEORTWOVALUES.getString()); // See the @UtilString for more details
                 } finally {
                     if (inputAux == 1 || inputAux == 2) {
                         simulatedControl = false;
@@ -394,10 +417,18 @@ public class Menu {
                     }
                 }
             }
-
+            // Instance of new Time
             time = new Time(circuit, car, racer, lapTime, wheater, simulated);
 
             addControl = true;
+
+
+            // In this block shows a Interactive Menu
+            // that asks the user if add the item or not
+            //
+            // If the user insert any data other
+            // than 1 or 2 will be set to 3
+            // Only breaks when inputaux will be '1'
             while (addControl) {
                 Scanner input = new Scanner(System.in);
                 try {
@@ -409,7 +440,7 @@ public class Menu {
                 } finally {
                     try {
                         if ((inputAux == 3)) {
-                            System.out.println(UtilString.ONLYONEORTWOVALUES.getString());
+                            System.out.println(UtilString.ONLYONEORTWOVALUES.getString()); // See the @UtilString for more details
 
                         } else if (inputAux == 1) {
                             check = false;
@@ -420,8 +451,16 @@ public class Menu {
                             addControl = false;
                             check = false;
                             inputAux = 0;
-
                             exitControl = true;
+
+
+                            // In this block shows a Interactive Menu
+                            // that asks the user if want exit to the
+                            // main Menu or not.
+                            //
+                            // If the user insert any data other
+                            // than 1 or 2 will be set to 3
+                            // Only breaks when inputTwo will be '1'
                             while (exitControl) {
                                 Scanner exitInput = new Scanner(System.in);
                                 try {
