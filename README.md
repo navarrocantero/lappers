@@ -29,7 +29,7 @@ This application allows you to add track race times:
         - Racer country
         - Racer country
         
-Selecting one of the available circuits
+- Selecting one of the available circuits
     
        - Monteblanco
        - Nurbur
