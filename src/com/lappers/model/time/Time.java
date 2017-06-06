@@ -2,15 +2,11 @@ package com.lappers.model.time;
 
 
 import com.lappers.controller.Util;
-import com.lappers.view.Menu;
-import com.lappers.view.UtilString;
 import com.lappers.model.car.Car;
 import com.lappers.model.circuit.Circuit_Enum;
 import com.lappers.model.racer.Racer;
 
 import java.util.Comparator;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Time implements Comparable<Time>, Comparator<Time>, java.io.Serializable {
 
@@ -211,20 +207,33 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
     static public String checkWheater(String string) {
 
         String emptyString = "";
-        String unknown = "30º, Clear ";
+        String unknown = "Clear ";
 
         return (string.trim().equalsIgnoreCase(emptyString) ? unknown : string);
     }
 
     /**
-     * Comparator by Lap Time
+     * Comparator by Time type
      */
-    public static Comparator<Time> compareByLapTime = new Comparator<Time>() {
+    public static Comparator<Time> compareByTimeType = new Comparator<Time>() {
         @Override
         public int compare(Time f1, Time f2) {
-            return (int) (f2.getLapTime() - f1.getLapTime());
+
+            return f1.isSimulated().compareTo(f2.isSimulated());
         }
     };
+
+    /**
+     * Comparator by Time type
+     */
+    public static Comparator<Time> comparatorByWheater = new Comparator<Time>() {
+        @Override
+        public int compare(Time f1, Time f2) {
+
+            return f1.getWheater().compareTo(f2.getWheater());
+        }
+    };
+
 
     @Override
     public boolean equals(Object obj) {

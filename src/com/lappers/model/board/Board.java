@@ -5,7 +5,6 @@ import com.lappers.model.time.Time;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
 /**
  * Created by driftineo on 18/5/17.
@@ -100,9 +99,7 @@ public class Board implements Serializable {
             ObjectOutputStream fos = new ObjectOutputStream(new FileOutputStream(filePath));
             fos.writeObject(board);
             fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -124,8 +121,10 @@ public class Board implements Serializable {
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+
             }
         } catch (IOException e) {
+
             e.printStackTrace();
         }
         return board;

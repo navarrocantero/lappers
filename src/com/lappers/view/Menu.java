@@ -8,6 +8,9 @@ import com.lappers.model.time.Time;
 
 import java.util.*;
 
+import static com.lappers.model.time.Time.comparatorByWheater;
+import static com.lappers.model.time.Time.compareByTimeType;
+
 /**
  * Created by driftineo on 4/5/17.
  */
@@ -24,13 +27,14 @@ public class Menu {
 
         // Control boolean
         Boolean bol = true;
+
         //  This integer  will make as selector in our main menu
         int option = 0;
 
+        Scanner input = new Scanner(System.in);
 
         while (bol) {
             try {
-                Scanner input = new Scanner(System.in);
 
                 System.out.println("*****MAIN__MENU*****");
                 System.out.println("*********************");
@@ -97,6 +101,7 @@ public class Menu {
 
     /**
      * This menu shows differents ways to see the board's times
+     *
      * @param times our ArrayList of Time class
      * @return int , if int == 0 go to back menu
      */
@@ -118,27 +123,64 @@ public class Menu {
                 Scanner input = new Scanner(System.in);                     // This block prints a interactive Menu
                 System.out.println("**********************");
                 System.out.println("**********************");
-                System.out.println("1 - Detailed  Times    ");
-                System.out.println("2 - Simply    Times    ");
+                System.out.println("  SORTED BY LAP TIME  ");
+                System.out.println("**********************");
+                System.out.println("1 - Detailed  Times   ");
+                System.out.println("2 - Simply    Times   ");
+                System.out.println("**********************");
+                System.out.println("  SORTED BY TIME TYPE ");
+                System.out.println("**********************");
+                System.out.println("3 - Simply    Times   ");
+                System.out.println("**********************");
+                System.out.println("  SORTED BY WHEATER   ");
+                System.out.println("**********************");
+                System.out.println("4 - Simply    Times   ");
+                System.out.println("**********************");
                 System.out.println("0 - Back              ");
                 System.out.println("**********************");
                 System.out.println("**********************");
+                System.out.printf("option :\n");
                 option = input.nextInt();
 
-                if (option == 0 || option == 1 || option == 2) { // If '0' was selected the user will go back
+                if (option == 0 || option == 1 || option == 2 || option == 3 || option == 4) { // If '0' was selected the user will go back
                     bol = false;                                //  and will return 0 and go back
                     if (option == 0) {
                         return option;
 
                     } else if (option == 1) {                   // If '1' was selected will do it this 'SOUT'
+                        System.out.println("Detailed Times Sorted By Lap Time");
                         for (Time time : times) {
                             System.out.println(time.toString());
                         }
                     } else if (option == 2) {                   // Same thing (that UP) but with '2' selected
+                        System.out.println("Simply Times Sorted By Lap Time");
                         System.out.println(times.get(0).getCircuit().getCIRCUIT_NAME() + "\n");
                         for (Time time : times) {
                             System.out.println("Pos " + (times.indexOf(time) + 1) + " " + time.getCar().getCarModel() + " "
                                     + time.getLapTime() + "''");
+                        }
+                    } else if (option == 3) {
+                        System.out.println("Simply Times Sorted By Time Type");
+
+                        // If '3' was selected will
+                        // do it compare by time type ( REAL OR SIMULATED)
+                        Collections.sort(times, compareByTimeType);
+
+                        for (Time time : times) {
+
+                            System.out.println("Pos " + (times.indexOf(time) + 1) + " " + time.getCar().getCarModel() + " "
+                                    + time.getLapTime() + "'' " + ((time.isSimulated() ? "Simulated" : "Real")) + " Time ");
+                        }
+                    } else if (option == 4) {
+                        System.out.println("Simply Times Sorted By Time Wheater");
+
+                        // If '4' was selected will
+                        // do it compare by time Wheater
+                        Collections.sort(times, comparatorByWheater);
+                        for (Time time : times) {
+
+                            System.out.println("Pos " + (times.indexOf(time) + 1) + " " + time.getCar().getCarModel() + " "
+                                    + time.getLapTime() + "'' " + time.getWheater());
                         }
                     }
                 }
@@ -151,6 +193,7 @@ public class Menu {
 
     /**
      * This menu show the submenus for add a time :
+     *
      * @param times our ArrayList of Time class
      */
     public static void addTimeMenu(ArrayList<Time> times) {
@@ -205,6 +248,7 @@ public class Menu {
 
     /**
      * This menu shows the Circuit Specs
+     *
      * @param times our ArrayList of Time class
      */
     public static void seeCircuitMenu(ArrayList<Time> times) {
@@ -213,7 +257,6 @@ public class Menu {
     }
 
     /**
-     *
      * @param times our ArrayList of Time class
      * @return int
      */
@@ -277,6 +320,7 @@ public class Menu {
 
     /**
      * This method shows a interactive Menu which can add a new Car
+     *
      * @return Car a new car
      */
     public static Car addCarMenu() {
@@ -307,6 +351,7 @@ public class Menu {
 
     /**
      * This method shows a interactive Menu which can add a new Racer
+     *
      * @return Racer a new racer
      */
     public static Racer addRacerMenu() {
@@ -331,6 +376,7 @@ public class Menu {
 
     /**
      * Shows a interactive menu for add a new Time
+     *
      * @param circuit Circuit see Enum @Circuit_Enum for more details about
      * @return Instance of Time class
      */
@@ -339,7 +385,7 @@ public class Menu {
         // New null Time
         Time time = new Time();
 
-         // The main control boolean of the next 'Big Method'
+        // The main control boolean of the next 'Big Method'
         boolean check = true;
 
 
@@ -384,7 +430,6 @@ public class Menu {
 
             System.out.println("Input wheater");
             wheater = wheaterInput.nextLine();
-
 
 
             // In this block shows a Interactive Menu

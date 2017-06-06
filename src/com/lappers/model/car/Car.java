@@ -4,8 +4,6 @@ package com.lappers.model.car;
 import com.lappers.controller.Util;
 
 import java.io.Serializable;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Car implements Serializable {
 
@@ -32,6 +30,16 @@ public class Car implements Serializable {
     public Car(String carModel) {
 
         this(carModel, " ", " ");
+    }
+
+    /**
+     *
+     * @param carModel String of the car model
+     * @param carTyres String of the car tyres comp
+     */
+    public Car(String carModel, String carTyres) {
+
+        this(carModel, " ", carTyres);
     }
 
     /**

@@ -17,18 +17,16 @@ public class App {
 
         //  The first block is instantiation of:
         //  String of different file paths
-        //  ReadAfile object helper for first boot
         String firstRunFilePath = "src/res/fr.dat";
         String nurburFilePath = "src/res/nurbur.dat";
         String topGearFilePath = "src/res/topgear.dat";
         String grandTourFilePath = "src/res/grandtour.dat";
         String monteblancoFilePath = "src/res/monteblanco.dat";
-        ReadAFile rf = new ReadAFile();
 
         //  In this  block will check if is the first run of app or not:
         //  That does it based on whether you can read a control file means
         //  it is not the first time of the app`s run
-        if (!(rf.canRead(firstRunFilePath))) {
+        if (!(File.canRead(firstRunFilePath))) {
 
             // If can enter here (means first run)
             // That will make 4 new Board objects loading data from
@@ -38,17 +36,17 @@ public class App {
             Board nurbBoard = new Board(loadNurburTimes());
             Board topGearBoard = new Board(loadTopGearTimes());
             Board grandTourBoard = new Board(loadGrandTourTimes());
+
             Board.boardToFile(nurbBoard, nurburFilePath);
             Board.boardToFile(monteblancoBoard, monteblancoFilePath);
             Board.boardToFile(grandTourBoard, grandTourFilePath);
             Board.boardToFile(topGearBoard, topGearFilePath);
 
             //  Finally, the verification file is saved
-            Board.boardToFile(null, firstRunFilePath);
+            File.writer(firstRunFilePath);
 
 
         }
-
 
         // In all the other starts of the program are instancian 4 objects Board
         // See the @Board class for see the fileToBoard method
@@ -74,7 +72,7 @@ public class App {
         // 2- Top gear   menu
         // 3- Grand tour menu
         // 4- Nurbur menu
-        // In each option the board will do sorted
+        // In each option the board will do sorted (by lap time)
         // and calculate the gap.
         while ((option = Menu.firstMenu()) != 0) {
 
@@ -142,10 +140,10 @@ public class App {
 
         // Instances of some test times
 
-        Time timeOne = new Time(Circuit_Enum.MONTEBLANCO, new Car("Audi TT RS Coupe"), new Racer(), 0.5137, "wet", false);
+        Time timeOne = new Time(Circuit_Enum.MONTEBLANCO, new Car("Audi TT RS Coupe","slick"), new Racer(), 0.5137, "", false);
         Time timeTwo = new Time(Circuit_Enum.MONTEBLANCO, new Car("Renault Megane RS (Mk III)"), new Racer(), 0.54080, "wet", false);
         Time timeThree = new Time(Circuit_Enum.MONTEBLANCO, new Car("BMW M3 (E92)"), new Racer(), 0.5620, "wet", false);
-        Time timeThreee = new Time(Circuit_Enum.MONTEBLANCO, new Car("Alfa Romeo Brera 3.2 JTS V6 Q4"), new Racer(), 0.5680, "wet", false);
+        Time timeThreee = new Time(Circuit_Enum.MONTEBLANCO, new Car("Alfa Romeo Brera 3.2 JTS V6 Q4","slick"), new Racer(), 0.5680, "wet", false);
 
         // Instance of arrayList
         ArrayList<Time> times = new ArrayList<>();
@@ -164,19 +162,19 @@ public class App {
     public static ArrayList<Time> loadTopGearTimes() {
 
         // Instances of some test times
-        Time timeOne = new Time(Circuit_Enum.TOP_GEAR, new Car("McLaren 675LT"), new Racer(), 1.137);
-        Time timeTwo = new Time(Circuit_Enum.TOP_GEAR, new Car("Pagani Huayra"), new Racer(), 1.138);
-        Time timeThree = new Time(Circuit_Enum.TOP_GEAR, new Car("BAC Mono"), new Racer(), 1.143);
-        Time timeFour = new Time(Circuit_Enum.TOP_GEAR, new Car("Mercedes-AMG GT R"), new Racer(), 1.16);
+        Time timeOne = new Time(Circuit_Enum.TOP_GEAR, new Car("McLaren 675LT","slick"), new Racer(), 1.137,"wet",true);
+        Time timeTwo = new Time(Circuit_Enum.TOP_GEAR, new Car("Pagani Huayra"), new Racer(), 1.138,"wet",true);
+        Time timeThree = new Time(Circuit_Enum.TOP_GEAR, new Car("BAC Mono"), new Racer(), 1.143,"",false);
+        Time timeFour = new Time(Circuit_Enum.TOP_GEAR, new Car("Mercedes-AMG GT R"), new Racer(), 1.16,"wet",true);
 
-        Time timeOnee = new Time(Circuit_Enum.TOP_GEAR, new Car("Dodge Viper ACR"), new Racer(), 1.151);
-        Time timeTwoe = new Time(Circuit_Enum.TOP_GEAR, new Car("Lamborghini Aventador LP700-4"), new Racer(), 1.165);
+        Time timeOnee = new Time(Circuit_Enum.TOP_GEAR, new Car("Dodge Viper ACR","slick"), new Racer(), 1.151);
+        Time timeTwoe = new Time(Circuit_Enum.TOP_GEAR, new Car("Lamborghini Aventador LP700-4","slick"), new Racer(), 1.165);
         Time timeThreee = new Time(Circuit_Enum.TOP_GEAR, new Car("Bugatti Veyron Super Sport"), new Racer(), 1.168);
-        Time timeFoure = new Time(Circuit_Enum.TOP_GEAR, new Car("Enzo Ferrari"), new Racer(), 1.19);
-        Time timeOneo = new Time(Circuit_Enum.TOP_GEAR, new Car("Ferrari 458 Italia"), new Racer(), 1.191);
+        Time timeFoure = new Time(Circuit_Enum.TOP_GEAR, new Car("Enzo Ferrari","slick"), new Racer(), 1.19);
+        Time timeOneo = new Time(Circuit_Enum.TOP_GEAR, new Car("Ferrari 458 Italia"), new Racer(), 1.191,"wet",true);
         Time timeTwoo = new Time(Circuit_Enum.TOP_GEAR, new Car("Ariel Atom 2 300"), new Racer(), 1.195);
-        Time timeThreeo = new Time(Circuit_Enum.TOP_GEAR, new Car("Nissan GT-R"), new Racer(), 1.197);
-        Time timeFouro = new Time(Circuit_Enum.TOP_GEAR, new Car("Ferrari 430 Scuderia"), new Racer(), 1.197);
+        Time timeThreeo = new Time(Circuit_Enum.TOP_GEAR, new Car("Nissan GT-R","slick"), new Racer(), 1.197);
+        Time timeFouro = new Time(Circuit_Enum.TOP_GEAR, new Car("Ferrari 430 Scuderia","slick"), new Racer(), 1.197);
 
         // Instance of arrayList
 
@@ -206,16 +204,16 @@ public class App {
 
         // Instances of some test times
 
-        Time timeOne = new Time(Circuit_Enum.GRAND_TOUR, new Car("Mclaren 675LT"), new Racer(), 1.137, "", false);
+        Time timeOne = new Time(Circuit_Enum.GRAND_TOUR, new Car("Mclaren 675LT","slick"), new Racer(), 1.137, "", false);
         Time timeTwo = new Time(Circuit_Enum.GRAND_TOUR, new Car("Pagani Huayra"), new Racer(), 1.138, "", false);
         Time timeThree = new Time(Circuit_Enum.GRAND_TOUR, new Car("Bac Mono"), new Racer(), 1.143, "", false);
         Time timeOnet = new Time(Circuit_Enum.GRAND_TOUR, new Car("Aston Martin Vulcan"), new Racer(), 1.155, "", false);
         Time timeTwot = new Time(Circuit_Enum.GRAND_TOUR, new Car("McLaren 650S"), new Racer(), 1.179, "", false);
-        Time timeThreet = new Time(Circuit_Enum.GRAND_TOUR, new Car("Nissan GT-R"), new Racer(), 1.212, "", false);
+        Time timeThreet = new Time(Circuit_Enum.GRAND_TOUR, new Car("Nissan GT-R","slick","slick"), new Racer(), 1.212, "", false);
         Time timeTwote = new Time(Circuit_Enum.GRAND_TOUR, new Car("BMW M4 GTS"), new Racer(), 1.224, "", false);
         Time timeThreeet = new Time(Circuit_Enum.GRAND_TOUR, new Car("BMW M5"), new Racer(), 1.242, "", false);
-        Time timeThreeeft = new Time(Circuit_Enum.GRAND_TOUR, new Car("Honda NSX"), new Racer(), 1.26, "wet", false);
-        Time timeThdsfreeeft = new Time(Circuit_Enum.GRAND_TOUR, new Car("Fiat Abarth 124 Spider"), new Racer(), 1.337, "wet", false);
+        Time timeThreeeft = new Time(Circuit_Enum.GRAND_TOUR, new Car("Honda NSX","slick"), new Racer(), 1.26, "wet", false);
+        Time timeThdsfreeeft = new Time(Circuit_Enum.GRAND_TOUR, new Car("Fiat Abarth 124 Spider","slick"), new Racer(), 1.337, "wet", false);
 
         // Instance of arrayList
 
@@ -243,16 +241,16 @@ public class App {
 
         // Instances of some test times
 
-        Time timeOne = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("NextEV Nio EP9"), new Racer(), 6.4590, "", false);
-        Time timeTwo = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Radical SR8LM "), new Racer(), 6.48, "", false);
+        Time timeOne = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("NextEV Nio EP9"), new Racer(), 6.4590, "", true);
+        Time timeTwo = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Radical SR8LM ","slick"), new Racer(), 6.48, "", false);
         Time timeThree = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Huracan Performante"), new Racer(), 6.5201, "", false);
-        Time timeOnet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Radical SR8"), new Racer(), 6.5608, "", false);
-        Time timeTwot = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Porsche 918 Spyder"), new Racer(), 6.57, "", false);
-        Time timeThreet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Nissan GT-R Nismo"), new Racer(), 7.0868, "", false);
-        Time timeTwote = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Mercedes-AMG GT-R"), new Racer(), 7.1092, "", false);
+        Time timeOnet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Radical SR8","slick"), new Racer(), 6.5608, "", false);
+        Time timeTwot = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Porsche 918 Spyder"), new Racer(), 6.57, "", true);
+        Time timeThreet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Nissan GT-R Nismo","slick"), new Racer(), 7.0868, "", false);
+        Time timeTwote = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Mercedes-AMG GT-R"), new Racer(), 7.1092, "", true);
         Time timeThreeet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Gumpert Apollo Speed"), new Racer(), 7.1157, "", false);
-        Time timeThreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Dodge Viper SRT-10 ACR"), new Racer(), 7.1213, "wet", false);
-        Time timeThdsfreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Porsche 911 GT3"), new Racer(), 7.1270, "wet", false);
+        Time timeThreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Dodge Viper SRT-10 ACR","slick"), new Racer(), 7.1213, "wet", false);
+        Time timeThdsfreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Porsche 911 GT3"), new Racer(), 7.1270, "wet", true);
 
         // Instance of arrayList
         ArrayList<Time> times = new ArrayList<>();
