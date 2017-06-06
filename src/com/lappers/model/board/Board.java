@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by driftineo on 18/5/17.
+ * Created by navarrocantero on 18/5/17.
  */
 public class Board implements Serializable {
 

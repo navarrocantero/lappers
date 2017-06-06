@@ -1,7 +1,7 @@
 package com.lappers.view;
 
 /**
- * Created by driftineo on 29/5/17.
+ * Created by navarrocantero on 29/5/17.
  */
 public enum UtilString {
     OLDTIMEKEEPED     ("**********************\nkeep the old Time for this car\n**********************"),
