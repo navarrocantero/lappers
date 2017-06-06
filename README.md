@@ -1,4 +1,5 @@
-Lappers 
+___**Lappers**___ 
+
 Java End-of-Course Project
 
 To see the times of different Race Tracks :
@@ -14,14 +15,18 @@ and run IT
 
 This application allows you to add track race times:
 
+
+
 - Introducing the Car
 
-       - Name of the car
-       - Type of tires (street, slick ...)
-       - Type of car (stock, racing ...)
+       - Name of the car
+       - Type of tyres
+       - Type of car
 
 - Introducing the Racer
+
         - Name of racer
+        - Racer country
         - Racer country
         
 Selecting one of the available circuits
@@ -30,3 +35,4 @@ Selecting one of the available circuits
        - Nurbur
        - Top gear test track
        - Grand tour test track
+
