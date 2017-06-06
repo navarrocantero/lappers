@@ -106,12 +106,15 @@ public class App {
                     while (Menu.seeTimesMenu(auxTimes) != 0) ;
                 }
                 if (secondOption == 2) {
-                    Menu.addTimeMenu(auxTimes);
+                    Menu.newTimeMenu(auxTimes);
                 }
                 if (secondOption == 3) {
                     while (Menu.quitTimeMenu(auxTimes) != 0) ;
                 }
                 if (secondOption == 4) {
+                    Menu.modifyTimeMenu(auxTimes);
+                }
+                if (secondOption == 5) {
                     Menu.seeCircuitMenu(auxTimes);
                 }
                 secondOption = 0;
@@ -242,15 +245,15 @@ public class App {
         // Instances of some test times
 
         Time timeOne = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("NextEV Nio EP9"), new Racer(), 6.4590, "", true);
-        Time timeTwo = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Radical SR8LM ","slick"), new Racer(), 6.48, "", false);
+        Time timeTwo = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Radical SR8LM ","slick"), new Racer(), 6.48, "", false);
         Time timeThree = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Huracan Performante"), new Racer(), 6.5201, "", false);
         Time timeOnet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Radical SR8","slick"), new Racer(), 6.5608, "", false);
-        Time timeTwot = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Porsche 918 Spyder"), new Racer(), 6.57, "", true);
+        Time timeTwot = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Porsche 918 Spyder"), new Racer(), 6.57, "", true);
         Time timeThreet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Nissan GT-R Nismo","slick"), new Racer(), 7.0868, "", false);
         Time timeTwote = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Mercedes-AMG GT-R"), new Racer(), 7.1092, "", true);
-        Time timeThreeet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Gumpert Apollo Speed"), new Racer(), 7.1157, "", false);
+        Time timeThreeet = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Gumpert Apollo Speed"), new Racer(), 7.1157, "", false);
         Time timeThreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Dodge Viper SRT-10 ACR","slick"), new Racer(), 7.1213, "wet", false);
-        Time timeThdsfreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car(" Porsche 911 GT3"), new Racer(), 7.1270, "wet", true);
+        Time timeThdsfreeeft = new Time(Circuit_Enum.NORDSCHLEIFE, new Car("Porsche 911 GT3"), new Racer(), 7.1270, "wet", true);
 
         // Instance of arrayList
         ArrayList<Time> times = new ArrayList<>();

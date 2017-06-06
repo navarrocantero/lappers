@@ -30,7 +30,7 @@ public class Time implements Comparable<Time>, Comparator<Time>, java.io.Seriali
     }
 
     /**
-     * This constructor only can be called in this class  because only if used to use in the addTimeMenu method
+     * This constructor only can be called in this class  because only if used to use in the newTimeMenu method
      * for a temporaly and not usable instance
      *
      * @param circuit Circuit_Enum Object
