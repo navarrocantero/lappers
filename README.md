@@ -35,15 +35,21 @@ This application allows you to add track race times:
        - Top gear test track
        - Grand tour test track
 
-And before select :
+- And after select :
+        
+        
+    -  Wheater   (wet,clear..)
+    - Simulated Time?  (select if is a simulated or real time)
 
-    - Wheater   (wet,clear..)
-    - Simulated Time? 
-    (select if is a simulator or real time)
     
+    
+With all the data listed above you create a time, which is entered into the list of their corresponding race track    
     
 Finally you can see the list of times for each race track, ordered by:
 
   - Lap time (obviusly and default)
   - Wheater 
   - Time type (real or simulated)
+  
+  
+  Fun!
