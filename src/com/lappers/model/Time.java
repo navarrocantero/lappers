@@ -1,10 +1,7 @@
-package com.lappers.model.time;
+package com.lappers.model;
 
 
 import com.lappers.controller.Util;
-import com.lappers.model.car.Car;
-import com.lappers.model.circuit.Circuit_Enum;
-import com.lappers.model.racer.Racer;
 
 import java.util.Comparator;
 

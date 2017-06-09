@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-class File {
+class NaCaFile {
 
     /**
      * Method that allows us to read a file.

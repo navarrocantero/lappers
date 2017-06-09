@@ -1,10 +1,10 @@
 package com.lappers.controller;
 
-import com.lappers.model.board.Board;
-import com.lappers.model.car.Car;
-import com.lappers.model.circuit.Circuit_Enum;
-import com.lappers.model.racer.Racer;
-import com.lappers.model.time.Time;
+import com.lappers.model.Board;
+import com.lappers.model.Car;
+import com.lappers.model.Circuit_Enum;
+import com.lappers.model.Racer;
+import com.lappers.model.Time;
 import com.lappers.view.Menu;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class App {
         //  In this  block will check if is the first run of app or not:
         //  That does it based on whether you can read a control file means
         //  it is not the first time of the app`s run
-        if (!(File.canRead(firstRunFilePath))) {
+        if (!(NaCaFile.canRead(firstRunFilePath))) {
 
             // If can enter here (means first run)
             // That will make 4 new Board objects loading data from
@@ -43,7 +43,7 @@ public class App {
             Board.boardToFile(topGearBoard, topGearFilePath);
 
             //  Finally, the verification file is saved
-            File.writer(firstRunFilePath);
+            NaCaFile.writer(firstRunFilePath);
 
 
         }

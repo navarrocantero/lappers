@@ -1,4 +1,4 @@
-package com.lappers.model.car;
+package com.lappers.model;
 
 
 import com.lappers.controller.Util;

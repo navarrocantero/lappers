@@ -1,11 +1,9 @@
-package com.lappers.model.racer;
+package com.lappers.model;
 
 
 import com.lappers.controller.Util;
 
 import java.io.Serializable;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Racer implements Serializable {
 

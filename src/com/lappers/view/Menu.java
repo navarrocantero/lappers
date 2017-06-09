@@ -1,16 +1,15 @@
 package com.lappers.view;
 
-import com.lappers.controller.Util;
-import com.lappers.model.board.Board;
-import com.lappers.model.car.Car;
-import com.lappers.model.circuit.Circuit_Enum;
-import com.lappers.model.racer.Racer;
-import com.lappers.model.time.Time;
+import com.lappers.model.Board;
+import com.lappers.model.Car;
+import com.lappers.model.Circuit_Enum;
+import com.lappers.model.Racer;
+import com.lappers.model.Time;
 
 import java.util.*;
 
-import static com.lappers.model.time.Time.comparatorByWheater;
-import static com.lappers.model.time.Time.compareByTimeType;
+import static com.lappers.model.Time.comparatorByWheater;
+import static com.lappers.model.Time.compareByTimeType;
 
 /**
  * Created by driftineo on 4/5/17.

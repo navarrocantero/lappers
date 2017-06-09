@@ -1,4 +1,4 @@
-package com.lappers.model.circuit;
+package com.lappers.model;
 
 /**
  * Created by Laptop on 16/05/2017.

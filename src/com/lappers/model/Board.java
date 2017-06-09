@@ -1,6 +1,4 @@
-package com.lappers.model.board;
-
-import com.lappers.model.time.Time;
+package com.lappers.model;
 
 import java.io.*;
 import java.util.ArrayList;
